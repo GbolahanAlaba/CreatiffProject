@@ -78,7 +78,7 @@ def signup_user(request):
         return Response({
             'user_info':{
                 'id': user.id,
-                'username': user.username,
+                'Fullname': user.Fullname,
                 'EmailAddress': user.EmailAddress
             },
         'token': token
