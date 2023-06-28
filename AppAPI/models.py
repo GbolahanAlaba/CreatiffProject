@@ -18,6 +18,7 @@ class Signup(AbstractUser):
     ID_Image = models.TextField(default='', blank=True, null=True)
     Document = models.TextField(default='', blank=True, null=True)
     Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    
 
     USERNAME_FIELD = "EmailAddress" 
     REQUIRED_FIELDS = ["username"]

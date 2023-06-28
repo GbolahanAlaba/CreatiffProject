@@ -8,6 +8,8 @@ class Signup_userSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ('Image', 'Fullname', 'EmailAddress', 'Phonenumber', 'password', 
                   'Address', 'Landmark', 'Label', 'Role', 'Identity', 'ID_Image', 'Document')
+        
+        extra_kwargs = {'username': {'required': False}}
 
         extra_fields = {
             "password": {'write_only': True},

@@ -18,28 +18,27 @@ from django.core.mail import send_mail
 @api_view(['POST'])
 def signin_user(request):
 
+    
+
     serializer = AuthTokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
 
-    if user:
-    
-        _, token = AuthToken.objects.create(user)
+    _, token = AuthToken.objects.create(user)
 
-        return Response({
+    return Response({
 
-            'user_info':{
-                'id': user.id,
-                'image': user.Image,
-                'Fullname': user.Fullname,
-                'EmailAddress': user.EmailAddress,
-                'Phonenumber': user.Phonenumber
-            },
-        'token': token
-        }, status=status.HTTP_202_ACCEPTED)
-    
-    else:
-        return Response({"Error": "Incorrect email or password"}, status=status.HTTP_400_BAD_REQUEST)
+        'user_info':{
+            'id': user.id,
+            'image': user.Image,
+            'Fullname': user.Fullname,
+            'EmailAddress': user.EmailAddress,
+            'Phonenumber': user.Phonenumber
+        },
+    'token': token
+    }, status=status.HTTP_202_ACCEPTED)
+
+
 
 
 @api_view(['GET'])
