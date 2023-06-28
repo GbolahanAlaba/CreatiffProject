@@ -23,7 +23,7 @@ class Signup(AbstractUser):
     REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return self.username + ' | ' + self.EmailAddress
+        return self.Fullname + ' | ' + self.EmailAddress
     
     
 
