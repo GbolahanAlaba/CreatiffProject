@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 
 
-    
 
 class Signup(AbstractUser):
     Image = models.TextField(default='', blank=True, null=True)

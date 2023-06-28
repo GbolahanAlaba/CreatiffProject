@@ -4,9 +4,11 @@ from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from django.contrib.auth import login, logout, authenticate
 from rest_framework.response import Response
+from rest_framework import generics
 from rest_framework import status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
+from rest_framework.permissions import IsAuthenticated   
 from . serializers import *
 
 from django.dispatch import receiver
@@ -18,12 +20,12 @@ from django.core.mail import send_mail
 @api_view(['POST'])
 def signin_user(request):
 
-    
+    # user = get_user_model().objects.filter()
 
     serializer = AuthTokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
-
+    
     _, token = AuthToken.objects.create(user)
 
     return Response({
@@ -37,8 +39,6 @@ def signin_user(request):
         },
     'token': token
     }, status=status.HTTP_202_ACCEPTED)
-
-
 
 
 @api_view(['GET'])
@@ -65,7 +65,7 @@ def signup_user(request):
     if request.method == 'GET':
         sub = get_user_model().objects.all()
         serializer = Signup_userSerializer(sub, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method =='POST':
 
@@ -91,9 +91,7 @@ def signup_user(request):
 @receiver(reset_password_token_created)
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
 
-    
     email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
-
     send_mail(
         # title:
         "Password Reset for {title}".format(title="Some website title"),
@@ -102,12 +100,10 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # from:
         "noreply@somehost.local",
         # to:
-        [reset_password_token.user.EmailAddress]
+        user = get_user_model().objects.all()
+        [reset_password_token.user.email]
     )
 
 
 
-
-
-
-# Create your views here.
+ # Create your views here.
