@@ -63,8 +63,8 @@ def get_user(request):
 def signup_user(request):
 
     if request.method == 'GET':
-        sub = get_user_model().objects.all()
-        serializer = Signup_userSerializer(sub, many=True)
+        obj = get_user_model().objects.all()
+        serializer = Signup_userSerializer(obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     elif request.method =='POST':

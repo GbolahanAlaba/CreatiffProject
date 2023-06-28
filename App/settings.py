@@ -86,15 +86,14 @@ WSGI_APPLICATION = 'App.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Creatifff',
-        'USER': 'postgres',
-        'PASSWORD': 'ablegod',
-        'HOST': 'localhost',
+        'NAME': 'postgres',
+        'USER': 'postgresdb',
+        'PASSWORD': 'ablegod2020',
+        'HOST': 'creatifff.ct4x5avmslzx.eu-west-1.rds.amazonaws.com',
         'PORT': '5432'
 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
