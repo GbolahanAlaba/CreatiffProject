@@ -16,7 +16,7 @@ from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 
-@api_view(['GET', 'POST', 'Delete'])
+@api_view(['GET', 'POST'])
 def Subscribers(request):
 
     # get all the subscriptions
@@ -43,7 +43,7 @@ def Subscribers(request):
     else:
         return Response({"Invalid Request"}, status=status.HTTP_400_BAD_REQUEST)
     
-    
+
 
 @api_view(['POST'])
 def signin_user(request):
