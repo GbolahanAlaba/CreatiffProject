@@ -30,13 +30,13 @@ def Subscribers(request):
     elif request.method == 'POST':
         serializer = SubSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            email = serializer.validated_data.get("Email",None)
+            email = serializer.validated_data.get("Email", None)
             is_exist = Subscriptions.objects.filter(Email=email).exists()
             if is_exist:
-                return Response({"Error!":"User with email already exist"},status=status.HTTP_400_BAD_REQUEST)
+                return Response({"Error!":"User with email already exist"}, status=status.HTTP_400_BAD_REQUEST)
             else:
                 serializer.save()
-                return Response(serializer.data, status.HTTP_201_CREATED)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         else:
             return Response({"Invalid Details"}, status=status.HTTP_400_BAD_REQUEST)
