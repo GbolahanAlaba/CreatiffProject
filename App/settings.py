@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'App.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgresdb',
-        'PASSWORD': 'ablegod2020',
-        'HOST': 'creatifff.ct4x5avmslzx.eu-west-1.rds.amazonaws.com',
+        'NAME': 'creatifffdb',
+        'USER': 'postgres',
+        'PASSWORD': 'Alexol1122',
+        'HOST': 'creatifff.cl4ze0n5l86k.eu-west-1.rds.amazonaws.com',
         'PORT': '5432'
 
     }
