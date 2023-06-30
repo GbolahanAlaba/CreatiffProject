@@ -3,6 +3,13 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 
 
+class Subscriptions(models.Model):
+    Name = models.CharField(max_length=100, default='', blank=True, null=True)
+    Email = models.EmailField(max_length=100, default='', blank=False, null=False, unique=True)
+
+    def __str__(self):
+        return self.Name + ' | ' + self.Email
+
 
 class Signup(AbstractUser):
     Image = models.TextField(default='', blank=True, null=True)

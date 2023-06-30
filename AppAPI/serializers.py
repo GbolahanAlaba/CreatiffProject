@@ -1,6 +1,12 @@
 from django.contrib.auth.models import User
+from . models import *
 from django.contrib.auth import get_user_model
 from rest_framework import serializers, validators
+
+class SubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscriptions
+        fields = ('Name', 'Email')
 
 
 class Signup_userSerializer(serializers.ModelSerializer):

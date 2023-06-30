@@ -16,6 +16,34 @@ from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 
+@api_view(['GET', 'POST', 'Delete'])
+def Subscribers(request):
+
+    # get all the subscriptions
+    # serialize them
+    # return json
+    if request.method == 'GET':
+        sub = Subscriptions.objects.all()
+        serializer = SubSerializer(sub, many=True)
+        return Response(serializer.data)
+        
+    elif request.method == 'POST':
+        serializer = SubSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            email = serializer.validated_data.get("Email",None)
+            is_exist = Subscriptions.objects.filter(Email=email).exists()
+            if is_exist:
+                return Response({"Error!":"User with email already exist"},status=status.HTTP_400_BAD_REQUEST)
+            else:
+                serializer.save()
+                return Response(serializer.data, status.HTTP_201_CREATED)
+        
+        else:
+            return Response({"Invalid Details"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"Invalid Request"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    
 
 @api_view(['POST'])
 def signin_user(request):
