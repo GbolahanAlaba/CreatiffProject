@@ -13,7 +13,7 @@ class Signup_userSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ('Image', 'Fullname', 'EmailAddress', 'Phonenumber', 'password', 
-                  'Address', 'Landmark', 'Label', 'Role', 'Identity', 'ID_Image', 'Document')
+                  'Address', 'Landmark', 'Label', 'Role', 'Identity', 'ID_Image', 'Document', 'Timestamp')
         
         extra_kwargs = {'username': {'required': False}}
 
